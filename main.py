@@ -11,13 +11,12 @@ def search_password():
     email = email_box.get()
     password = password_box.get()
 
-    with open(r"E:\Python projects\Password manager\passwords.json", "r") as file:
+    with open(r"passwords.json", "r") as file:
         passwords = json.load(file)
         try:
             messagebox.showinfo(title=website, message=f"Email/Username: {passwords[website]['email']}\n           Password: {passwords[website]['password']}")
         except KeyError:
             messagebox.showinfo(title="Error", message="The website you searched for doesn't exist in the database")
-            print(passwords[website]["email"])
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 # Password Generator Project
 
@@ -69,10 +68,10 @@ def add_data():
                                                               f"\nPassword: {password}\n Is it ok to save?")
         if is_ok:
             # all entries are stored in an array
-            with open(r"E:\Python projects\Password manager\passwords.json", "r") as file:
+            with open(r"passwords.json", "r") as file:
                 data = json.load(file)
                 data.update(new_data)
-            with open(r"E:\Python projects\Password manager\passwords.json", "w") as file:
+            with open(r"passwords.json", "w") as file:
                 json.dump(data, file, indent=4)
 
             # clear entry box entries
@@ -87,7 +86,7 @@ window.config(padx=40, pady=40)
 window.title("Password Manager")
 
 canvas = Canvas(width=200, height=200)
-lock_logo = PhotoImage(file=r"E:\Python projects\Password manager\logo.png")
+lock_logo = PhotoImage(file=r"logo.png")
 canvas.create_image(100, 100, image=lock_logo)
 canvas.grid(row=0, column=1)
 
